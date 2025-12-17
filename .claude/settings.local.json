@@ -8,7 +8,12 @@
       "Bash(npm install)",
       "Bash(if exist .git rmdir /s /q .git)",
       "Bash(git init:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nEasy Order - Senior Accessibility App\n\n- React + Vite + TypeScript 시니어 접근성 주문 앱\n- 모카 무스 (Mocha Mousse) 테마 적용\n- 메뉴 상세 페이지 (온도 선택 UI)\n- 주문 영수증 페이지 (동적 주문번호)\n- 음성 주문 기능 (Gemini AI + Web Speech API)\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git branch:*)",
+      "Bash(git remote add:*)",
+      "Bash(git push:*)",
+      "Bash(git commit:*)"
     ]
   }
 }
