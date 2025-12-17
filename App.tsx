@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ShoppingCart, CheckCircle, Video, ArrowLeft, Trash2, XCircle } from 'lucide-react';
+import { ShoppingCart, ArrowLeft, Trash2, XCircle } from 'lucide-react';
 import { AppState, MenuItem, CartItem } from './types';
 import { speak, startListening } from './services/voiceService';
 import { parseVoiceCommand } from './services/geminiService';
 import { generateOrderNumber } from './utils/orderUtils';
+import { logger } from './utils/logger';
 import VoiceButton from './components/VoiceButton';
 import MenuCard from './components/MenuCard';
 import MenuDetailPage from './components/MenuDetailPage';
@@ -39,7 +40,7 @@ const App: React.FC = () => {
             videoRef.current.srcObject = stream;
           }
         })
-        .catch(err => console.error("Camera error:", err));
+        .catch(err => logger.warn("Camera access denied or unavailable", { error: err?.message }));
 
       // Simulate Face Detection Delay (2 seconds)
       timeout = setTimeout(() => {
@@ -64,11 +65,11 @@ const App: React.FC = () => {
       async (transcript) => {
         setIsListening(false);
         setIsProcessing(true);
-        console.log("User said:", transcript);
-        
+        logger.debug("Voice transcript received", { transcript });
+
         // Use Gemini to understand intent
         const intent = await parseVoiceCommand(transcript);
-        console.log("Intent:", intent);
+        logger.debug("Parsed intent", { action: intent.action });
 
         if (intent.action === 'ADD_ORDER' && intent.item) {
           // Find item in menu

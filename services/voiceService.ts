@@ -38,8 +38,7 @@ export const startListening = (onResult: (text: string) => void, onEnd: () => vo
     onResult(transcript);
   };
 
-  recognition.onerror = (event: any) => {
-    console.error("Speech error", event);
+  recognition.onerror = () => {
     onEnd();
   };
 
