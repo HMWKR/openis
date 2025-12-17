@@ -1,0 +1,8 @@
+{
+  "name": "Easy-Order (Senior Accessibility)",
+  "description": "A high-accessibility food ordering web app designed for seniors, featuring large text, high contrast, and AI-powered voice interaction.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
